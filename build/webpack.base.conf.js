@@ -1,51 +1,39 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+const isDev = process.env.NODE_ENV === 'development';
+
 module.exports = {
-  mode: "development",
-  mode: "productioin",  // 在生产模式下， 代码就会自动压缩
   entry: ["./src/index.js"],
   output: {
     // 输出目录
-    path: path.join(__dirname, "dist"),
-    // 文件名称
-    filename: "bundle.[name].[hash].js"
+    path: path.resolve(__dirname, "../dist"),
   },
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
       use: "babel-loader",
-      exclude: /node_modules/
     }, {
-      test: /\.scss$/,
+      test: /\.(sc|sa|c)ss$/,
       use: [
-        // "style-loader", // 不再需要style-loader要已经分离处理
-        MiniCssExtractPlugin.loader,
-        "css-loader", // 编译css
-        "postcss-loader",
-        "sass-loader" // 编译scss
-      ]
-    }, {
-      test: /\.css$/,
-      use: [
-        MiniCssExtractPlugin.loader,
+        isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+        // MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
           options: {
-            modules: true,  // 开启 CSS Module
-            localIdentName: '[local]_[hash:base64:5]',  // 定制哈希字符串的格式
-            // localIdentName: '[path][name]-[local]-[hash:base64:5]', // 定制哈希字符串的格式
-            root: 'static',
-            minimize: true,
-            importLoaders: 1
+            modules: {
+              localIdentName: '[local]_[hash:base64:5]',
+            },
+            sourceMap: true
           }
         },
-        'postcss-loader'
+        "postcss-loader", // 使用 postcss 为 css 加上浏览器前缀
+        "sass-loader" // 编译scss
       ]
     }, {
       test: /\.(png|jpg|jpeg|gif|svg)/,
@@ -73,9 +61,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html', // 最终创建的文件名
-      template: path.join(__dirname, 'public/index.html') // 指定模板路径
+      template: path.join(__dirname, '../public/index.html') // 指定模板路径
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
       filename: "[name].[hash].css",
       chunkFilename: "[id].[hash].css"
@@ -85,19 +72,17 @@ module.exports = {
     hot: true,
     contentBase: path.join(__dirname, "./dist"),
     host: "0.0.0.0", // 可以使用手机访问
-    port: 8080,
+    port: 8586,
     historyApiFallback: true, // 该选项的作用所有的404都连接到index.html
-    proxy: {
-      // 代理到后端的服务地址，会拦截所有以api开头的请求地址
-      "/api": "http://localhost:3000"
-    }
+    // proxy: {
+    //   // 代理到后端的服务地址，会拦截所有以api开头的请求地址
+    //   "/api": "http://localhost:3000"
+    // }
   },
   resolve: {
-    extension: ["", ".js", ".jsx"],
+    extensions: [".js", ".jsx"],
     alias: {
-      "@": path.join(__dirname, "src"),
-      pages: path.join(__dirname, "src/pages"),
-      router: path.join(__dirname, "src/router")
+      "@": path.join(__dirname, "../src"),
     }
   },
   optimization: {
@@ -105,6 +90,5 @@ module.exports = {
       chunks: "all", // 所有的 chunks 代码公共的部分分离出来成为一个单独的文件
     },
   },
-  devtool: "cheap-module-eval-source-map", // 开发环境配置
-  // devtool:"cheap-module-source-map",   // 线上生成配置
+  performance: false // 关闭性能提示
 }
