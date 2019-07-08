@@ -15,6 +15,12 @@ module.exports = {
   },
   module: {
     rules: [{
+      //前置(在执行编译之前去执行eslint-loader检查代码规范，有报错就不执行编译)
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: 'eslint-loader',
+    }, {
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       use: "babel-loader",
