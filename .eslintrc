@@ -9,7 +9,7 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "rules": {
     "generator-star-spacing": [0],
     "consistent-return": [0],

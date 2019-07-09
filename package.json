@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.conf.js",
     "start": "cross-env NODE_ENV=development node ./build/dev-server.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.conf.js"
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.conf.js",
+    "lint-staged": "lint-staged",
+    "lint-staged:js": "eslint --ext .js --fix",
+    "prettier": "prettier --write ./src/**/**/**/*"
   },
   "author": "hzzly",
   "license": "MIT",
@@ -25,20 +28,26 @@
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
     "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.17.1",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.0",
+    "lint-staged": "^7.3.0",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
     "react-hot-loader": "^4.12.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
@@ -55,5 +64,23 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "**/*.{js,jsx,scss}": [
+        "prettier --write",
+        "git add"
+      ],
+      "**/*.{js,jsx}": "npm run lint-staged:js",
+      "**/*.scss": "stylelint --syntax=scss"
+    },
+    "ignore": [
+      "**/dist/public/*"
+    ]
   }
 }
