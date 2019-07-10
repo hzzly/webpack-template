@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react-dom": "npm:@hot-loader/react-dom",
     "react-router-dom": "^5.0.1"
   },
   "husky": {

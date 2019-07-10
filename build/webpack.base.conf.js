@@ -36,7 +36,7 @@ module.exports = {
               modules: {
                 localIdentName: '[local]_[hash:base64:5]',
               },
-              sourceMap: true,
+              sourceMap: !isDev && true, // 开发时刷新会导致闪屏（样式加载慢一步）
             },
           },
           'postcss-loader', // 使用 postcss 为 css 加上浏览器前缀
@@ -75,22 +75,7 @@ module.exports = {
       filename: 'index.html', // 最终创建的文件名
       template: path.join(__dirname, '../public/index.html'), // 指定模板路径
     }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
-    }),
   ],
-  devServer: {
-    hot: true,
-    contentBase: path.join(__dirname, './dist'),
-    host: '0.0.0.0', // 可以使用手机访问
-    port: 8586,
-    historyApiFallback: true, // 该选项的作用所有的404都连接到index.html
-    // proxy: {
-    //   // 代理到后端的服务地址，会拦截所有以api开头的请求地址
-    //   "/api": "http://localhost:3000"
-    // }
-  },
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
@@ -105,3 +90,12 @@ module.exports = {
   },
   performance: false, // 关闭性能提示
 };
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+  ]);
+}
