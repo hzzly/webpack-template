@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 // const webpack = require("webpack");
 const commonConfig = require('./webpack.base.conf.js');
 const WorkboxPlugin = require('workbox-webpack-plugin'); // 引入 PWA 插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -33,6 +34,10 @@ module.exports = merge(commonConfig, {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
     }),
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify('production'),
