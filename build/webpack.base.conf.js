@@ -29,7 +29,6 @@ module.exports = {
         test: /\.(sc|sa|c)ss$/,
         use: [
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          // MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -90,12 +89,3 @@ module.exports = {
   },
   performance: false, // 关闭性能提示
 };
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports.plugins = (module.exports.plugins || []).concat([
-    new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
-    }),
-  ]);
-}

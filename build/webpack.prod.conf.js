@@ -3,6 +3,8 @@ const merge = require('webpack-merge');
 // const webpack = require("webpack");
 const commonConfig = require('./webpack.base.conf.js');
 const WorkboxPlugin = require('workbox-webpack-plugin'); // 引入 PWA 插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = merge(commonConfig, {
   mode: 'production',
@@ -33,6 +35,22 @@ module.exports = merge(commonConfig, {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css',
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'server',
+      analyzerHost: '127.0.0.1',
+      analyzerPort: 8889,
+      reportFilename: 'report.html',
+      defaultSizes: 'parsed',
+      openAnalyzer: true,
+      generateStatsFile: false,
+      statsFilename: 'stats.json',
+      statsOptions: null,
+      logLevel: 'info',
     }),
     // new webpack.DefinePlugin({
     //   'process.env.NODE_ENV': JSON.stringify('production'),
