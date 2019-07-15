@@ -7,6 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.conf.js",
     "start": "cross-env NODE_ENV=development node ./build/dev-server.js",
     "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.conf.js",
+    "analyz": "cross-env NODE_ENV=production npm_config_report=true npm run build",
     "lint-staged": "lint-staged",
     "lint-staged:js": "eslint --ext .js --fix",
     "prettier": "prettier --write ./src/**/**/**/*"
@@ -53,6 +54,7 @@
     "style-loader": "^0.23.1",
     "url-loader": "^2.0.0",
     "webpack": "^4.33.0",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.4",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.7.1",
