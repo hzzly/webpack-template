@@ -17,14 +17,11 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime-corejs2": "^7.5.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
-    "core-js": "^3.1.4",
     "cross-env": "^5.2.0",
     "css-loader": "^3.0.0",
     "eslint": "^6.0.1",
@@ -40,6 +37,7 @@
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-standard": "^4.0.0",
     "express": "^4.17.1",
+    "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "^3.0.0",
     "lint-staged": "^7.3.0",
@@ -63,6 +61,8 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "core-js": "2",
     "react": "^16.8.6",
     "react-dom": "npm:@hot-loader/react-dom",
     "react-router-dom": "^5.0.1"
