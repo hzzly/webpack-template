@@ -17,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
@@ -48,6 +49,7 @@
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "react-hot-loader": "^4.12.3",
+    "redux-logger": "^3.0.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "stylelint": "^10.1.0",
@@ -68,7 +70,9 @@
     "core-js": "2",
     "react": "^16.8.6",
     "react-dom": "npm:@hot-loader/react-dom",
-    "react-router-dom": "^5.0.1"
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.4"
   },
   "husky": {
     "hooks": {
