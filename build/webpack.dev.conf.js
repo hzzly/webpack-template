@@ -5,7 +5,7 @@ const commonConfig = require('./webpack.base.conf.js');
 
 module.exports = merge(commonConfig, {
   mode: 'development',
-  devtool: 'cheap-module-eval-soure-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: {
     //实现刷新浏览器webpack-hot-middleware/client?noInfo=true&reload=true 是必填的
     main: ['webpack-hot-middleware/client?noInfo=true&reload=true', './src/index.js'],
