@@ -1,0 +1,154 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td,
+figure {
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+del,
+ins {
+  text-decoration: none
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+}
+
+input,
+select,
+img {
+  vertical-align: middle
+}
+
+input,
+select {
+  outline: none
+}
+
+ul,
+ol {
+  list-style: none
+}
+
+label {
+  cursor: pointer
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+address,
+cite,
+dfn,
+em,
+var {
+  font-style: normal;
+}
+
+body {
+  -ms-text-size-adjust: none;
+  -o-user-select: none;
+  -o-text-size-adjust: none;
+  user-select: none;
+  text-size-adjust: none;
+  font: 14px "microsoft YaHei", Arial, Helvetica, sans-serif;
+  min-height: 100%;
+}
+
+a {
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-decoration: none;
+}
+
+.clear {
+  clear: both
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+input,
+select,
+button,
+textarea {
+  -webkit-appearance: none;
+  border: none;
+  font-family: "microsoft YaHei";
+  padding: 0;
+}
+
+button {
+  background-color: transparent;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+*:focus {
+  outline: none;
+}
+
+.icon {
+  display: inline-block;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}

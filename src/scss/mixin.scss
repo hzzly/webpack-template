@@ -1,0 +1,74 @@
+%clearfix {
+  &:after {
+    content: "";
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+  }
+
+  zoom: 1;
+}
+
+%textpoint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%fl {
+  float: left;
+}
+
+%fr {
+  float: right;
+}
+
+@function px($size) {
+  @return ($size / 20) + rem;
+}
+
+@mixin m_opacity($x) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$x*100+")";
+  filter: alpha(opacity=$x*100);
+  opacity: $x;
+}
+
+/* 最多line行 ie截断*/
+@mixin max_line($line) {
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 兼容ie */
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
+
+/*bg 渐变 垂直方向*/
+@mixin bglinearY($bcolor,$ecolor) {
+  background: $bcolor;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $bcolor), color-stop(100%, $ecolor));
+  background: -webkit-linear-gradient(top, $bcolor 0%, $ecolor 100%);
+  background: -o-linear-gradient(top, $bcolor 0%, $ecolor 100%);
+  background: -moz-linear-gradient(top, $bcolor 0%, $ecolor 100%);
+  background: -ms-linear-gradient(top, $bcolor 0%, $ecolor 100%);
+  background: linear-gradient(top, $bcolor 0%, $ecolor 100%);
+}
+
+/*bg 渐变 水平方向*/
+@mixin bglinearX($bcolor,$ecolor) {
+  background: $bcolor;
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, $bcolor), color-stop(100%, $ecolor));
+  background: -webkit-linear-gradient(to left, $bcolor 0%, $ecolor 100%);
+  background: -o-linear-gradient(to left, $bcolor 0%, $ecolor 100%);
+  background: -moz-linear-gradient(to left, $bcolor 0%, $ecolor 100%);
+  background: -ms-linear-gradient(to left, $bcolor 0%, $ecolor 100%);
+  background: linear-gradient(to left, $bcolor 0%, $ecolor 100%);
+}
+
+%grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
