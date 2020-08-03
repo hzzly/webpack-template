@@ -1,7 +1,7 @@
 
-## App/jsx
+## pc/jsx
 
-webApp template
+pc/jsx template
 
 ## install
 ```
