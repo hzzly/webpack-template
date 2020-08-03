@@ -1,7 +1,9 @@
 import './index.scss';
 
 class Text {
-  constructor({ txt = 'pc/js' }) {
+  txt: string;
+
+  constructor({ txt = 'pc/ts' }) {
     this.txt = txt;
   }
 

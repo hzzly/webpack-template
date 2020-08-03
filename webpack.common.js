@@ -17,8 +17,8 @@ const htmlPluginConfigs = generatorHtmlPluginConfig([{ name: 'home' }, { name: '
 
 module.exports = {
   entry: {
-    home: path.resolve(__dirname, 'src/js/home.js'),
-    center: path.resolve(__dirname, 'src/js/center.js'),
+    home: path.resolve(__dirname, 'src/ts/home.ts'),
+    center: path.resolve(__dirname, 'src/ts/center.ts'),
   },
   output: {
     path: path.resolve(__dirname, 'release'),
@@ -28,6 +28,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.ts?$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader',
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
@@ -35,7 +40,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.js'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },

@@ -2,11 +2,16 @@ import Toast from './Toast';
 
 const toastArr = [];
 
-export default function toast(config) {
+interface IConfig {
+  content: string;
+  style?: Object;
+}
+
+export default function toast(config: string | IConfig) {
   if (!config) return;
-  const div = document.createElement('div');
+  const div: HTMLElement = document.createElement('div');
   document.body.appendChild(div);
-  let currentConfig = { content: '' };
+  let currentConfig: IConfig = { content: '' };
   if (typeof config === 'string') {
     currentConfig = { content: config };
   } else {

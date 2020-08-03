@@ -1,13 +1,16 @@
-import axios from 'axios';
+import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { stringify } from 'qs';
 import Toast from '@/components/Toast';
 
 const { CancelToken } = axios;
-const httpPending = []; // 用于存储每个ajax请求的取消函数和ajax标识
+const httpPending: Array<{
+  u: string;
+  f: Function;
+}> = []; // 用于存储每个ajax请求的取消函数和ajax标识
 
 // 取消请求方法
-const cancelHttp = (config = {}) => {
-  const url = config.url.substring(0, config.url.indexOf('?'));
+const cancelHttp = (config: AxiosRequestConfig = {}) => {
+  const url: string = config.url.substring(0, config.url.indexOf('?'));
   httpPending.forEach((e, i) => {
     if (e.u === `${url}&${config.method}`) {
       // 当前请求在数组中存在时执行函数体
@@ -37,7 +40,7 @@ const request = axios.create({
 
 // 请求拦截器
 request.interceptors.request.use(
-  (config) => {
+  (config: AxiosRequestConfig) => {
     // 取消上一次未完成的相同请求，注意项目中是否存在风险
     cancelHttp(config);
 
@@ -63,7 +66,7 @@ request.interceptors.request.use(
 
 // 响应拦截器
 request.interceptors.response.use(
-  (response) => {
+  (response: AxiosResponse) => {
     cancelHttp(response.config);
 
     return checkStatus(response);

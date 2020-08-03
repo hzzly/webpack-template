@@ -1,7 +1,12 @@
 import './index.scss';
 
 class Toast {
-  constructor({ content, style }) {
+  content: any;
+
+  style: any;
+
+  constructor(config: { [x: string]: any; content?: any; style?: any }) {
+    const { content, style } = config;
     this.content = content;
     this.style = style;
   }
