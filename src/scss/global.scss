@@ -3,6 +3,8 @@
 @import './sprite';
 
 :global {
+  html,
+  body,
   #app {
     height: 100%;
   }

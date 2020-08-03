@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/index.jsx'),
-    vendors: ['react', 'axios'],
   },
   output: {
     path: path.resolve(__dirname, 'release'),
@@ -29,9 +28,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: path.resolve(__dirname, `public/index.html`),
       inject: true,
-      chunks: ['vendors', 'index'],
+      chunks: ['index'],
     }),
   ],
 };
