@@ -12,6 +12,7 @@ module.exports = merge(common, {
     port: 8080,
     hot: true,
     open: true,
+    openPage: 'home.html',
     proxy: {
       // '/': {
       //   target: 'http://xxxxxxxx',
@@ -32,9 +33,6 @@ module.exports = merge(common, {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              modules: {
-                localIdentName: '[local]_[hash:base64:5]',
-              },
             },
           },
           {
