@@ -10,7 +10,7 @@ import request from '@/utils/request';
  * get
  * @param {*} params
  */
-export async function get(params) {
+export async function get(params: any) {
   return request({ url: `/xxxxxxx.html?${stringify(params)}` });
 }
 
@@ -18,7 +18,7 @@ export async function get(params) {
  * post
  * @param {*} params
  */
-export async function post(params) {
+export async function post(params: any) {
   return request({
     url: `/xxxxxxx.html`,
     method: 'post',

@@ -1,4 +1,4 @@
-export function log(...message) {
+export function log(...message): void {
   if (window.console && (getParamByName('log') || process.env.NODE_ENV === 'development')) {
     // eslint-disable-next-line no-console
     console.log(...message);
@@ -11,7 +11,7 @@ export function log(...message) {
  * @param {string} url - url
  * @returns {string}
  */
-export function getParamByName(name, url = window.location.search) {
+export function getParamByName(name: string, url: string = window.location.search): string {
   // eslint-disable-next-line no-useless-escape
   const key = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
   const regex = new RegExp(`[\\?&]${key}=([^&#]*)`);
