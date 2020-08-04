@@ -1,3 +1,12 @@
+@import '@/scss/sprite';
+
 .text {
   font-size: 26px;
+
+  i {
+    display: inline-block;
+    vertical-align: middle;
+    @extend %sprite;
+    @include icon-loading;
+  }
 }
