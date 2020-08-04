@@ -11,7 +11,7 @@
     "build": "cross-env NODE_ENV='production' webpack --config webpack.prod.js",
     "analyz": "cross-env NODE_ENV='production' npm_config_report=true npm run build",
     "clean": "rimraf release",
-    "lint": "eslint --ext .ts src",
+    "lint": "eslint --ext .ts --ext .js src",
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
@@ -37,8 +37,6 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.21.2",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.0",
     "file-loader": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-load-plugins": "^2.0.3",
@@ -76,11 +74,11 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx,scss}": [
+    "**/*.{js,ts,scss}": [
       "prettier --write",
       "git add"
     ],
-    "**/*.{js,jsx,ts,tsx}": "npm run lint"
+    "**/*.{js,ts}": "npm run lint"
   },
   "browserslist": [
     "> 1%",
