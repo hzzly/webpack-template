@@ -1,7 +1,7 @@
 
-## pc/jsx
+## pc/tsx
 
-pc/jsx template
+pc/tsx template
 
 ## install
 ```

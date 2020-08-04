@@ -1,28 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import Toast from './Toast';
+import { IConfig } from './typed';
 
 const toastArr = [];
 
-export default function toast(config) {
+export default function toast(config: string | IConfig): void {
   if (!config) return;
   const div = document.createElement('div');
   document.body.appendChild(div);
-  let currentConfig = { content: '' };
+  let currentConfig: IConfig = { content: '' };
   if (typeof config === 'string') {
     currentConfig = { content: config };
   } else {
     currentConfig = { ...config };
   }
 
-  function destroy() {
+  function destroy(): void {
     const unmountResult = ReactDOM.unmountComponentAtNode(div);
     if (unmountResult && div.parentNode) {
       div.parentNode.removeChild(div);
     }
   }
 
-  function render({ duration = 2, ...props }) {
+  function render({ duration = 2, ...props }: IConfig): void {
     if (toastArr.length > 0) {
       const dom = toastArr[0];
       const unmountResult = ReactDOM.unmountComponentAtNode(dom);

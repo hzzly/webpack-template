@@ -1,10 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import Home from '@/containers/Home';
 
 const App = () => {
-  return (
-    <Home />
-  )
-}
+  return <Home />;
+};
 
 export default App;

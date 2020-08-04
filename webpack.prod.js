@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const path = require('path');
 const merge = require('webpack-merge');
 const webpack = require('webpack');
@@ -73,5 +74,14 @@ module.exports = merge(common, {
   ],
   optimization: {
     minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          minChunks: 2,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
 });

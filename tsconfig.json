@@ -4,12 +4,14 @@
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
     "jsx": "react"
   },
+  "include": ["src"],
   "exclude": [
     "node_modules"
   ]
