@@ -43,14 +43,6 @@ module.exports = merge(common, {
           },
         ],
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/i,
-        loader: 'url-loader',
-        options: {
-          limit: 10000000,
-          name: 'images/[name].[ext]',
-        },
-      },
       // {
       //   test: /\.(js|jsx)$/,
       //   exclude: /node_modules/,
