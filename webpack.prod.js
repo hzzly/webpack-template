@@ -2,7 +2,13 @@ const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const common = require('./webpack.common.js');
+
+const plugins = [];
+if (process.env.npm_config_report) {
+  plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 8081 }));
+}
 
 module.exports = merge(common, {
   mode: 'production',
@@ -36,18 +42,11 @@ module.exports = merge(common, {
           },
         ],
       },
-      {
-        test: /\.(png|svg|jpg|gif)$/i,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          outputPath: 'images',
-          name: '[name].[hash:7].[ext]',
-        },
-      },
     ],
   },
   plugins: [
+    ...plugins,
+
     new CleanWebpackPlugin(),
 
     new MiniCssExtractPlugin({

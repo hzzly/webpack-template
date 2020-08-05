@@ -1,14 +1,7 @@
 import React from 'react';
-import { toast } from '@/utils/protocol';
+import Toast from '@/components/Toast';
 
 export const appContext = React.createContext({});
-
-export const getUserInfo = async () => {
-  // eslint-disable-next-line no-undef
-  const ypAPI = new YpProDefinit({});
-  const userInfo = await ypAPI.YpJsToSetLoginInfo();
-  return userInfo;
-};
 
 export const getParames = (name) => {
   const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);
@@ -34,7 +27,7 @@ export const checkResponse = (response, sucesss, notlogin) => {
       if (notlogin) notlogin();
       return result;
     default:
-      toast(message);
+      Toast(message);
       return {};
   }
 };

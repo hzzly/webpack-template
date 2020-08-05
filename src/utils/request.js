@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { stringify } from 'qs';
-import { toast } from '@/utils/protocol';
+import Toast from '@/components/Toast';
 
 const { CancelToken } = axios;
 const httpPending = []; // 用于存储每个ajax请求的取消函数和ajax标识
@@ -19,7 +19,7 @@ const cancelHttp = (config = {}) => {
 
 function checkStatus(response) {
   if (!response.data) {
-    toast('网络异常，请重试~');
+    Toast('网络异常，请重试~');
   }
 
   if (response.status >= 200 && response.status < 300) {

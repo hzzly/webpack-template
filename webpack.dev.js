@@ -8,7 +8,7 @@ module.exports = merge(common, {
   devServer: {
     contentBase: './release',
     port: '8086',
-    host: '0.0.0.0',
+    // host: '0.0.0.0',
     historyApiFallback: true,
     hot: true,
     open: true,
@@ -44,14 +44,6 @@ module.exports = merge(common, {
             loader: 'sass-loader',
           },
         ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/i,
-        loader: 'url-loader',
-        options: {
-          limit: 10000000,
-          name: 'images/[name].[ext]',
-        },
       },
       // {
       //   test: /\.(js|jsx)$/,
