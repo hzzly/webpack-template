@@ -1,4 +1,4 @@
-import React from 'react';
+import { h } from 'preact';
 import Text from '@/components/Text';
 
 import styles from './index.scss';
@@ -8,7 +8,7 @@ const Home = () => {
     <div className={styles.home}>
       <Text />
     </div>
-  )
-}
+  );
+};
 
 export default Home;

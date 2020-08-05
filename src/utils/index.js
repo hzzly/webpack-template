@@ -1,7 +1,4 @@
-import React from 'react';
 import Toast from '@/components/Toast';
-
-export const appContext = React.createContext({});
 
 export const getParames = (name) => {
   const reg = new RegExp(`(^|&)${name}=([^&]*)(&|$)`);

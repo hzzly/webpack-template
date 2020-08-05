@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { h, render } from 'preact';
 import Toast from './Toast';
 
 const toastArr = [];
@@ -16,24 +15,22 @@ export default function toast(config) {
   }
 
   function destroy() {
-    const unmountResult = ReactDOM.unmountComponentAtNode(div);
-    if (unmountResult && div.parentNode) {
+    if (div.parentNode) {
       div.parentNode.removeChild(div);
     }
   }
 
-  function render({ duration = 2, ...props }) {
+  function renderFun({ duration = 2, ...props }) {
     if (toastArr.length > 0) {
       const dom = toastArr[0];
-      const unmountResult = ReactDOM.unmountComponentAtNode(dom);
-      if (unmountResult && dom.parentNode) {
+      if (dom.parentNode) {
         dom.parentNode.removeChild(dom);
       }
       toastArr.splice(0, 1);
     }
     setTimeout(() => {
       toastArr.push(div);
-      ReactDOM.render(
+      render(
         <Toast
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...props}
@@ -45,5 +42,5 @@ export default function toast(config) {
     setTimeout(() => destroy(), duration * 1000);
   }
 
-  render(currentConfig);
+  renderFun(currentConfig);
 }
