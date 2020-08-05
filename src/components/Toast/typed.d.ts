@@ -1,5 +1,5 @@
 export interface IConfig {
   content: string;
-  style?: Object;
+  style?: any;
   duration?: number;
 }

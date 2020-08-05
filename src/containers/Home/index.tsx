@@ -1,9 +1,9 @@
-import * as React from 'react';
+import { FunctionalComponent, h } from 'preact';
 import Text from '@/components/Text';
 
 import * as styles from './index.scss';
 
-const Home = (): React.ReactElement => {
+const Home: FunctionalComponent = () => {
   return (
     <div className={styles.home}>
       <Text />

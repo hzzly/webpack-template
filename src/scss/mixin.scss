@@ -24,99 +24,26 @@
   float: right;
 }
 
+@function px($size) {
+  @return ($size / 20) + rem;
+}
+
 @mixin m_opacity($x) {
   -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=' + $x * 100+')';
   filter: alpha(opacity=$x * 100);
   opacity: $x;
 }
 
-@mixin m_opacity2($color1) {
-  background: $color1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color1)}', endColorstr='#{ie-hex-str($color1)}');
-}
-
-@mixin borderRadius($x) {
-  -webkit-border-radius: $x;
-  -moz-border-radius: $x;
-  -o-border-radius: $x;
-  -ms-border-radius: $x;
-  border-radius: $x;
-}
-
-%grayscale {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-}
-
-@mixin textEllipse($line: 2) {
-  @if $line == 1 {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  @if $line >1 {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: $line;
-    /* autoprefixer:off */
-    -webkit-box-orient: vertical;
-    /* autoprefixer:on */
-    white-space: normal;
-    word-break: break-all;
-  }
-}
-
-/*背景阴影*/
-@mixin bxshow($bxshow) {
-  -webkit-box-shadow: $bxshow;
-  -moz-box-shadow: $bxshow;
-  -o-box-shadow: $bxshow;
-  box-shadow: $bxshow;
-}
-
-@mixin large-screen() {
-  @at-root body.m-large-screen & {
-    @content;
-  }
-}
-
-@mixin translateX($positionX) {
-  -webkit-transform: translateX($positionX);
-  -moz-transform: translateX($positionX);
-  -ms-transform: translateX($positionX);
-  -o-transform: translateX($positionX);
-  transform: translateX($positionX);
-}
-
-@mixin translateY($positionY) {
-  -webkit-transform: translateY($positionY);
-  -moz-transform: translateY($positionY);
-  -ms-transform: translateY($positionY);
-  -o-transform: translateY($positionY);
-  transform: translateY($positionY);
-}
-
-@mixin translateZ($positionZ) {
-  -webkit-transform: translateZ($positionZ);
-  -moz-transform: translateZ($positionZ);
-  -ms-transform: translateZ($positionZ);
-  -o-transform: translateZ($positionZ);
-  transform: translateZ($positionZ);
-}
-
-@mixin translate($positionX: 0, $positionY: 0) {
-  -webkit-transform: translate($positionX, $positionY);
-  -moz-transform: translate($positionX, $positionY);
-  -ms-transform: translate($positionX, $positionY);
-  -o-transform: translate($positionX, $positionY);
-  transform: translate($positionX, $positionY);
-}
-
-@mixin box-sizing($sizing: border-box) {
-  -webkit-box-sizing: $sizing;
-  -moz-box-sizing: $sizing;
-  box-sizing: $sizing;
+/* 最多line行 ie截断*/
+@mixin max_line($line) {
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 兼容ie */
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
 }
 
 /*bg 渐变 垂直方向*/
@@ -153,61 +80,7 @@
   background: linear-gradient(to left, $bcolor 0%, $ecolor 100%);
 }
 
-/*缩放*/
-@mixin scale($size) {
-  -webkit-transform: scale($size);
-  -moz-transform: scale($size);
-  -o-transform: scale($size);
-  -ms-transform: scale($size);
-  transform: scale($size);
-}
-
-/*旋转*/
-@mixin rotate($deg) {
-  -webkit-transform: rotate($deg);
-  -moz-transform: rotate($deg);
-  -o-transform: rotate($deg);
-  -ms-transform: rotate($deg);
-  transform: rotate($deg);
-}
-
-/*滚动条*/
-@mixin scrollBar($color: #fff) {
-  scrollbar-track-color: transparent;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    background: $color;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: #e1e4e7;
-  }
-
-  &::-webkit-scrollbar-corner {
-    display: none;
-  }
-
-  &::-moz-scrollbar {
-    width: 6px;
-    background: $color;
-  }
-
-  &::-moz-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-moz-scrollbar-thumb {
-    border-radius: 5px;
-    background: #e1e4e7;
-  }
-
-  &::-moz-scrollbar-corner {
-    display: none;
-  }
+%grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }

@@ -69,5 +69,9 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
+    react: {
+      pragma: 'h',
+      version: '999.999.999',
+    },
   },
 };

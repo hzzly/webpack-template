@@ -1,9 +1,9 @@
-import * as React from 'react';
+import { h } from 'preact';
 import { IConfig } from './typed';
 
 import * as styles from './index.scss';
 
-const Toast = (props: IConfig): React.ReactElement => {
+const Toast = (props: IConfig) => {
   const { content, style } = props;
 
   return (

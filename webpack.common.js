@@ -5,6 +5,7 @@ const SpritesmithPlugin = require('webpack-spritesmith');
 module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/index.tsx'),
+    vendors: ['preact', 'axios'],
   },
   output: {
     path: path.resolve(__dirname, 'release'),
@@ -43,9 +44,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, `public/index.html`),
+      template: './src/index.html',
       inject: true,
-      chunks: ['index'],
+      chunks: ['vendors', 'index'],
     }),
     new SpritesmithPlugin({
       src: {
@@ -80,28 +81,33 @@ module.exports = {
 function spriteTemplateFunc(data) {
   if (data.sprites.length === 0) return '';
   const imageName = data.spritesheet.image.match(/[^/\\]+$/)[0].replace(/\.\w+$/, '');
+  const fn = '$base: 40; @function rem( $px ){@return $px/60*1rem;}';
   const file = data.sprites[0].image.split('/');
   const filename = file[file.length - 1];
   const shared = `
     %${imageName} {
       background-image: url(~@/images/${filename}?${new Date().getTime()});
       background-repeat: no-repeat;
+      background-size: rem(${data.spritesheet.width}) rem(${data.spritesheet.height});
     }
   `;
 
   const perSprite = data.sprites
     .map((sprite) => {
-      const pX = sprite.offset_x ? `${sprite.offset_x}px` : 0;
-      const pY = sprite.offset_y ? `${sprite.offset_y}px` : 0;
-
-      return '@mixin N { width: W; height: H; background-position: X Y; }'
+      const pX = sprite.offset_x
+        ? `${(sprite.offset_x / (sprite.width - sprite.total_width)) * 100}%`
+        : 0;
+      const pY = sprite.offset_y
+        ? `${(sprite.offset_y / (sprite.height - sprite.total_height)) * 100}%`
+        : 0;
+      return '@mixin N { width: rem(W); height: rem(H); background-position: X Y; }'
         .replace('N', sprite.name)
-        .replace('W', `${sprite.width}px`)
-        .replace('H', `${sprite.height}px`)
+        .replace('W', sprite.width)
+        .replace('H', sprite.height)
         .replace('X', pX)
         .replace('Y', pY);
     })
     .join('\n');
 
-  return `${shared}\n${perSprite}`;
+  return `${fn}\n${shared}\n${perSprite}`;
 }
