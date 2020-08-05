@@ -1,0 +1,10 @@
+%sprite {
+  background-image: url(~@/images/sprite.png?1596591232300);
+  background-repeat: no-repeat;
+}
+
+@mixin icon-loading {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+}
