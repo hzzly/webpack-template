@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
@@ -8,6 +9,7 @@ module.exports = merge(common, {
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: path.resolve(__dirname, 'release'),
+    stats: 'errors-only',
     compress: true,
     port: 8080,
     hot: true,
@@ -50,5 +52,5 @@ module.exports = merge(common, {
       // },
     ],
   },
-  plugins: [new webpack.HotModuleReplacementPlugin({})],
+  plugins: [new webpack.HotModuleReplacementPlugin({}), new FriendlyErrorsWebpackPlugin()],
 });
