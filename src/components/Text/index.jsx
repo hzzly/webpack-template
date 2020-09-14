@@ -1,9 +1,9 @@
-import { h } from 'preact';
+import React from 'react';
 
 import styles from './index.scss';
 
 const index = () => {
-  return <div className={styles.text}>wap/jsx template</div>;
+  return <div className={styles.text}>wap/react/jsx template</div>;
 };
 
 export default index;

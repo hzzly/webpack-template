@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import React from 'react';
 import Home from '@/containers/Home';
 
 const App = () => {

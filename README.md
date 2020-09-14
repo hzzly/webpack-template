@@ -1,7 +1,7 @@
 
-## wap/jsx
+## wap/react/jsx
 
-wap/jsx template
+wap/react/jsx template
 
 ## install
 ```

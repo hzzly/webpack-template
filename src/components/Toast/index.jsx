@@ -1,4 +1,5 @@
-import { h, render } from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Toast from './Toast';
 
 const toastArr = [];
@@ -30,7 +31,7 @@ export default function toast(config) {
     }
     setTimeout(() => {
       toastArr.push(div);
-      render(
+      ReactDOM.render(
         <Toast
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...props}

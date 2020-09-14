@@ -46,17 +46,8 @@ module.exports = {
     'import/extensions': 0,
     'no-bitwise': 0,
     'no-cond-assign': 0,
+    'react/jsx-indent': [2, 2, { indentLogicalExpressions: true }],
     indent: ['off', 2],
-    // 'comma-dangle': [
-    //   'error',
-    //   {
-    //     arrays: 'always-multiline',
-    //     objects: 'always-multiline',
-    //     imports: 'always-multiline',
-    //     exports: 'always-multiline',
-    //     functions: 'ignore',
-    //   },
-    // ],
     'object-curly-newline': [0],
     'function-paren-newline': [0],
     'no-restricted-globals': [0],
@@ -67,10 +58,6 @@ module.exports = {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
-    },
-    react: {
-      pragma: 'h',
-      version: '999.999.999',
     },
   },
 };

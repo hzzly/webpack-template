@@ -1,7 +1,7 @@
 {
-  "name": "wap-jsx",
+  "name": "wap-react-jsx",
   "version": "1.0.0",
-  "description": "wap jsx",
+  "description": "wap react jsx",
   "author": "hzzly",
   "license": "MIT",
   "scripts": {
@@ -62,7 +62,8 @@
   "dependencies": {
     "axios": "0.18.0",
     "es6-promise": "^4.2.8",
-    "preact": "^10.4.6"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "husky": {
     "hooks": {
