@@ -1,9 +1,9 @@
-import { FunctionalComponent, h } from 'preact';
+import * as React from 'react';
 
 import * as styles from './index.scss';
 
-const index: FunctionalComponent = () => {
-  return <div className={styles.text}>pc/tsx template</div>;
+const index: React.FC = () => {
+  return <div className={styles.text}>wap/react/tsx template</div>;
 };
 
 export default index;

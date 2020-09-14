@@ -5,7 +5,7 @@ const SpritesmithPlugin = require('webpack-spritesmith');
 module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/index.tsx'),
-    vendors: ['preact', 'axios'],
+    vendors: ['react', 'axios'],
   },
   output: {
     path: path.resolve(__dirname, 'release'),

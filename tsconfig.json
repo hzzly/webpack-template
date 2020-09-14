@@ -9,8 +9,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "jsx": "react",
-    "jsxFactory": "h"
+    "jsx": "react"
   },
   "include": ["src"],
   "exclude": [

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import * as React from 'react';
 import { IConfig } from './typed';
 
 import * as styles from './index.scss';

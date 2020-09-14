@@ -1,4 +1,5 @@
-import { h, render } from 'preact';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import Toast from './Toast';
 import { IConfig } from './typed';
 
@@ -31,7 +32,7 @@ export default function toast(config: string | IConfig): void {
     }
     setTimeout(() => {
       toastArr.push(div);
-      render(
+      ReactDOM.render(
         <Toast
           // eslint-disable-next-line react/jsx-props-no-spreading
           {...props}
