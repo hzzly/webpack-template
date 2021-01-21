@@ -1,9 +1,17 @@
+/*
+ * @Author: hzzly
+ * @Date: 2020-09-14 14:05:56
+ * @LastEditors: hzzly
+ * @LastEditTime: 2021-01-21 12:09:42
+ * @Copyright: hzzly(hjingren@aliyun.com)
+ * @Description: description
+ */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Toast from './Toast';
 import { IConfig } from './typed';
 
-const toastArr = [];
+const toastArr: any[] = [];
 
 export default function toast(config: string | IConfig): void {
   if (!config) return;

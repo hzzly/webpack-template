@@ -1,12 +1,11 @@
 
-## pc/tsx
+## wap/react/tsx
 
-pc/tsx template
+wap/react/tsx template
 
 ## install
 ```
 yarn
-yarn dll
 yarn start
 yarn build
 yarn analyz
