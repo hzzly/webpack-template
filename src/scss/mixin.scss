@@ -1,0 +1,102 @@
+%clearfix {
+  &:after {
+    content: '';
+    height: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+  }
+
+  zoom: 1;
+}
+
+%textpoint {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%fl {
+  float: left;
+}
+
+%fr {
+  float: right;
+}
+
+@mixin m_opacity($x) {
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=' + $x * 100+')';
+  filter: alpha(opacity=$x * 100);
+  opacity: $x;
+}
+
+%grayscale {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+@mixin textEllipse($line: 2) {
+  @if $line == 1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  @if $line >1 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line;
+    /* autoprefixer:off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer:on */
+    white-space: normal;
+    word-break: break-all;
+  }
+}
+
+@mixin large-screen() {
+  @at-root body.m-large-screen & {
+    @content;
+  }
+}
+
+/*滚动条*/
+@mixin scrollBar($color: #fff) {
+  scrollbar-track-color: transparent;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: $color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #e1e4e7;
+  }
+
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+
+  &::-moz-scrollbar {
+    width: 6px;
+    background: $color;
+  }
+
+  &::-moz-scrollbar-track {
+    background-color: transparent;
+  }
+
+  &::-moz-scrollbar-thumb {
+    border-radius: 5px;
+    background: #e1e4e7;
+  }
+
+  &::-moz-scrollbar-corner {
+    display: none;
+  }
+}
