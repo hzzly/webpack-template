@@ -1,10 +1,10 @@
 import React from 'react';
 
-import styles from './index.scss';
+import './index.scss';
 
 const index = () => {
   return (
-    <div className={styles.text}>
+    <div className="text">
       <i />
       pc/jsx template
     </div>

@@ -13,7 +13,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'public', 'dll'),
+    path: path.resolve(__dirname, '../public', 'dll'),
     filename: '[name].dll.js',
     library: '_dll_[name]',
   },
@@ -22,7 +22,7 @@ module.exports = {
     new webpack.DllPlugin({
       name: '_dll_[name]',
       context: __dirname,
-      path: path.join(__dirname, 'public', 'dll', '[name].manifest.json'),
+      path: path.join(__dirname, '../public', 'dll', '[name].manifest.json'),
     }),
   ],
 };

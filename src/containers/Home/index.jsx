@@ -1,14 +1,14 @@
 import React from 'react';
 import Text from '@/components/Text';
 
-import styles from './index.scss';
+import './index.scss';
 
 const Home = () => {
   return (
-    <div className={styles.home}>
+    <div className="home">
       <Text />
     </div>
-  )
-}
+  );
+};
 
 export default Home;

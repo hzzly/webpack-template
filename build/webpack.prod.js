@@ -33,10 +33,6 @@ module.exports = merge(common, {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              modules: {
-                localIdentName: '[local]_[hash:base64:5]',
-              },
-              sourceMap: true,
             },
           },
           {
@@ -54,12 +50,12 @@ module.exports = merge(common, {
 
     new webpack.DllReferencePlugin({
       context: __dirname,
-      manifest: require('./public/dll/vendor.manifest.json'),
+      manifest: require('../public/dll/vendor.manifest.json'),
     }),
 
     new AddAssetHtmlWebpackPlugin([
       {
-        filepath: path.resolve(__dirname, 'public', 'dll', 'vendor.dll.js'),
+        filepath: path.resolve(__dirname, '../public', 'dll', 'vendor.dll.js'),
         outputPath: 'vendor',
         publicPath: './vendor',
       },

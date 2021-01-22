@@ -5,9 +5,9 @@
   "author": "hzzly",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV='development' webpack-dev-server --config webpack.dev.js",
-    "dll": "cross-env NODE_ENV='production' webpack --config webpack.dll.js",
-    "build": "cross-env NODE_ENV='production' webpack --config webpack.prod.js",
+    "start": "cross-env NODE_ENV='development' webpack-dev-server --config ./build/webpack.dev.js",
+    "dll": "cross-env NODE_ENV='production' webpack --config ./build/webpack.dll.js",
+    "build": "cross-env NODE_ENV='production' webpack --config ./build/webpack.prod.js",
     "analyz": "cross-env NODE_ENV='production' npm_config_report=true npm run build",
     "lint": "eslint --ext .js --ext .jsx src",
     "lint-staged": "lint-staged"

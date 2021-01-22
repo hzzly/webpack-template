@@ -1,12 +1,12 @@
 import React from 'react';
 
-import styles from './index.scss';
+import './index.scss';
 
 const Toast = (props) => {
   const { content, style } = props;
 
   return (
-    <div className={styles.toast} style={style || {}}>
+    <div className="toast" style={style || {}}>
       {content}
     </div>
   );

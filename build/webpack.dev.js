@@ -34,9 +34,6 @@ module.exports = merge(common, {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              modules: {
-                localIdentName: '[local]_[hash:base64:5]',
-              },
             },
           },
           {
@@ -47,11 +44,11 @@ module.exports = merge(common, {
           },
         ],
       },
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint-loader',
-      // },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
     ],
   },
   plugins: [new webpack.HotModuleReplacementPlugin({}), new FriendlyErrorsWebpackPlugin()],
