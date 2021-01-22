@@ -29,7 +29,6 @@ module.exports = merge(common, {
             loader: 'css-loader',
             options: {
               importLoaders: 2,
-              sourceMap: true,
             },
           },
           {
