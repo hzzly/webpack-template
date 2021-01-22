@@ -30,11 +30,6 @@
   opacity: $x;
 }
 
-@mixin m_opacity2($color1) {
-  background: $color1;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($color1)}', endColorstr='#{ie-hex-str($color1)}');
-}
-
 %grayscale {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);

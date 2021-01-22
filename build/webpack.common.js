@@ -86,7 +86,7 @@ function spriteTemplateFunc(data) {
     %${imageName} {
       background-image: url(~@/images/${filename}?${new Date().getTime()});
       background-repeat: no-repeat;
-      background-size: ${data.spritesheet.width / 2}px ${data.spritesheet.height / 2}px
+      background-size: ${data.spritesheet.width / 2}px ${data.spritesheet.height / 2}px;
     }
   `;
 
