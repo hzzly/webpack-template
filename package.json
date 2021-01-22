@@ -5,8 +5,8 @@
   "author": "hzzly",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV='development' webpack-dev-server --config webpack.dev.js",
-    "build": "cross-env NODE_ENV='production' webpack --config webpack.prod.js",
+    "start": "cross-env NODE_ENV='development' webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "cross-env NODE_ENV='production' webpack --config ./build/webpack.prod.js",
     "analyz": "cross-env NODE_ENV='production' npm_config_report=true npm run build",
     "lint": "eslint --ext .js src",
     "lint-staged": "lint-staged"

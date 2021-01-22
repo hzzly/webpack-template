@@ -45,11 +45,11 @@ module.exports = merge(common, {
           },
         ],
       },
-      // {
-      //   test: /\.(js|jsx)$/,
-      //   exclude: /node_modules/,
-      //   loader: 'eslint-loader',
-      // },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
     ],
   },
   plugins: [new webpack.HotModuleReplacementPlugin({}), new FriendlyErrorsWebpackPlugin()],
