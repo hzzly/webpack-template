@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Home from '@/containers/Home';
 
 const App = () => {

@@ -2,17 +2,18 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
     "sourceMap": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "jsx": "react",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "jsx": "react"
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src"],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules", "release"]
 }

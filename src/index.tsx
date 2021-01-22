@@ -2,7 +2,7 @@ import 'es6-promise/auto';
 import 'core-js/es/map';
 import 'core-js/es/set';
 
-import * as React from 'react';
+import React from 'react';
 import { render } from 'react-dom';
 
 import App from './app';

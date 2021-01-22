@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import Text from '@/components/Text';
 
-import * as styles from './index.scss';
+import './index.scss';
 
-const Home = (): React.ReactElement => {
+const Home = () => {
   return (
-    <div className={styles.home}>
+    <div className="home">
       <Text />
     </div>
   );

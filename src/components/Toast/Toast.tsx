@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { IConfig } from './typed';
 
-import * as styles from './index.scss';
+import './index.scss';
 
-const Toast = (props: IConfig): React.ReactElement => {
+const Toast: React.FC<IConfig> = (props) => {
   const { content, style } = props;
 
   return (
-    <div className={styles.toast} style={style || {}}>
+    <div className="toast" style={style || {}}>
       {content}
     </div>
   );

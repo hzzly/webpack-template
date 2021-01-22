@@ -4,10 +4,10 @@ const SpritesmithPlugin = require('webpack-spritesmith');
 
 module.exports = {
   entry: {
-    index: path.resolve(__dirname, 'src/index.tsx'),
+    index: path.resolve(__dirname, '../src/index.tsx'),
   },
   output: {
-    path: path.resolve(__dirname, 'release'),
+    path: path.resolve(__dirname, '../release'),
     filename: 'js/[name].js',
     publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
   },
@@ -29,7 +29,7 @@ module.exports = {
         options: {
           limit: 10000,
           outputPath: 'images',
-          name: '[name].[hash:7].[ext]',
+          name: `[name].[ext]?${new Date().getTime()}`,
         },
       },
     ],
@@ -37,26 +37,26 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, '../src'),
     },
-    modules: ['node_modules', path.resolve(__dirname, 'src')],
+    modules: ['node_modules', path.resolve(__dirname, '../src')],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, `public/index.html`),
+      template: path.resolve(__dirname, `../public/index.html`),
       inject: true,
       chunks: ['index'],
     }),
     new SpritesmithPlugin({
       src: {
-        cwd: path.resolve(__dirname, 'src/assets/images'), // 图片根路径
+        cwd: path.resolve(__dirname, '../src/assets/images'), // 图片根路径
         glob: '*.png', // 图片类型
       },
       target: {
-        image: path.resolve(__dirname, 'src/images/sprite.png'), // 生成雪碧图的名称和路径
+        image: path.resolve(__dirname, '../src/images/sprite.png'), // 生成雪碧图的名称和路径
         css: [
           [
-            path.resolve(__dirname, 'src/scss/sprite.scss'),
+            path.resolve(__dirname, '../src/scss/sprite.scss'),
             {
               // 生成CSS文件的名称和路径
               format: 'function_based_template', // 模板配置，注意在customTemplates中配置对应名称的属性名
@@ -86,18 +86,19 @@ function spriteTemplateFunc(data) {
     %${imageName} {
       background-image: url(~@/images/${filename}?${new Date().getTime()});
       background-repeat: no-repeat;
+      background-size: ${data.spritesheet.width / 2}px ${data.spritesheet.height / 2}px
     }
   `;
 
   const perSprite = data.sprites
     .map((sprite) => {
-      const pX = sprite.offset_x ? `${sprite.offset_x}px` : 0;
-      const pY = sprite.offset_y ? `${sprite.offset_y}px` : 0;
+      const pX = sprite.offset_x ? `${sprite.offset_x / 2}px` : 0;
+      const pY = sprite.offset_y ? `${sprite.offset_y / 2}px` : 0;
 
       return '@mixin N { width: W; height: H; background-position: X Y; }'
         .replace('N', sprite.name)
-        .replace('W', `${sprite.width}px`)
-        .replace('H', `${sprite.height}px`)
+        .replace('W', `${sprite.width / 2}px`)
+        .replace('H', `${sprite.height / 2}px`)
         .replace('X', pX)
         .replace('Y', pY);
     })
