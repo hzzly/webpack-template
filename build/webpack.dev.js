@@ -14,11 +14,12 @@ module.exports = merge(common, {
     port: 8080,
     hot: true,
     open: true,
+    openPage: 'home.html',
+    disableHostCheck: true,
     proxy: {
       // '/': {
-      //   target: 'http://xxxxxxxx',
+      //   target: 'xxxxxxxxxxxxxx',
       //   changeOrigin: true,
-      //   // pathRewrite: { '^/api': '' },
       // },
     },
   },
@@ -45,7 +46,7 @@ module.exports = merge(common, {
         ],
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         loader: 'eslint-loader',
       },

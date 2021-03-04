@@ -1,11 +1,30 @@
 const path = require('path');
+const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpritesmithPlugin = require('webpack-spritesmith');
 
+const pages = [{ name: 'home', title: '首页', template: '' }];
+
+const entry = {};
+
+const genHtmlPluginConfig = (options) => {
+  return options.map((option) => {
+    entry[option.name] = path.resolve(__dirname, `../src/pages/${option.name}.tsx`);
+    return new HtmlWebpackPlugin({
+      filename: `${option.name}.html`,
+      title: option.title,
+      template: path.resolve(__dirname, `../public/${option.template || 'index'}.html`),
+      inject: true,
+      minify: false,
+      chunks: [`${option.name}`],
+    });
+  });
+};
+const htmlPluginConfigs = genHtmlPluginConfig(pages);
+const spriltsConfigs = genSpritesmithPlugin(`../src/assets/images`);
+
 module.exports = {
-  entry: {
-    index: path.resolve(__dirname, '../src/index.tsx'),
-  },
+  entry,
   output: {
     path: path.resolve(__dirname, '../release'),
     filename: 'js/[name].js',
@@ -14,9 +33,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts[x]?$/,
         exclude: /node_modules/,
-        loader: 'ts-loader',
+        loader: 'babel-loader!ts-loader',
       },
       {
         test: /\.(js|jsx)$/,
@@ -41,41 +60,53 @@ module.exports = {
     },
     modules: ['node_modules', path.resolve(__dirname, '../src')],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, `../public/index.html`),
-      inject: true,
-      chunks: ['index'],
-    }),
-    new SpritesmithPlugin({
-      src: {
-        cwd: path.resolve(__dirname, '../src/assets/images'), // 图片根路径
-        glob: '*.png', // 图片类型
-      },
-      target: {
-        image: path.resolve(__dirname, '../src/images/sprite.png'), // 生成雪碧图的名称和路径
-        css: [
-          [
-            path.resolve(__dirname, '../src/scss/sprite.scss'),
-            {
-              // 生成CSS文件的名称和路径
-              format: 'function_based_template', // 模板配置，注意在customTemplates中配置对应名称的属性名
-            },
-          ],
-        ],
-      },
-      customTemplates: {
-        function_based_template: spriteTemplateFunc, // 上一项使用到的模板变量
-      },
-      apiOptions: {
-        cssImageRef: '../images/sprite.png', // 生成的CSS中引用的雪碧图路径
-      },
-      spritesmithOptions: {
-        padding: 6, // 图标的间隔
-      },
-    }),
-  ],
+  // externals: {
+  //   react: 'React',
+  //   'react-dom': 'ReactDOM',
+  // },
+  plugins: [...htmlPluginConfigs, ...spriltsConfigs],
 };
+
+function genSpritesmithPlugin(src) {
+  const names = fs.readdirSync(path.resolve(__dirname, src)).filter((f) => f.indexOf('.') < 0);
+  if (names.length > 0) {
+    return names.map((name) => {
+      return spritesmithPlugin(src, name);
+    });
+  } else {
+    return [spritesmithPlugin(src)];
+  }
+}
+
+function spritesmithPlugin(src, name) {
+  return new SpritesmithPlugin({
+    src: {
+      cwd: path.resolve(__dirname, `${src}${name ? `/${name}` : ''}`), // 图片根路径
+      glob: '*.png', // 图片类型
+    },
+    target: {
+      image: path.resolve(__dirname, `../src/images/${name || 'sprite'}.png`), // 生成雪碧图的名称和路径
+      css: [
+        [
+          path.resolve(__dirname, `../src/scss/common/${name || 'sprite'}.scss`),
+          {
+            // 生成CSS文件的名称和路径
+            format: 'function_based_template', // 模板配置，注意在customTemplates中配置对应名称的属性名
+          },
+        ],
+      ],
+    },
+    customTemplates: {
+      function_based_template: spriteTemplateFunc, // 上一项使用到的模板变量
+    },
+    apiOptions: {
+      cssImageRef: `../images/${name || 'sprite'}.png`, // 生成的CSS中引用的雪碧图路径
+    },
+    spritesmithOptions: {
+      padding: 6, // 图标的间隔
+    },
+  });
+}
 
 function spriteTemplateFunc(data) {
   if (data.sprites.length === 0) return '';

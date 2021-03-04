@@ -35,25 +35,6 @@
   filter: grayscale(100%);
 }
 
-@mixin textEllipse($line: 2) {
-  @if $line == 1 {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  @if $line >1 {
-    display: -webkit-box;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: $line;
-    /* autoprefixer:off */
-    -webkit-box-orient: vertical;
-    /* autoprefixer:on */
-    white-space: normal;
-    word-break: break-all;
-  }
-}
-
 @mixin large-screen() {
   @at-root body.m-large-screen & {
     @content;
@@ -61,12 +42,12 @@
 }
 
 /*滚动条*/
-@mixin scrollBar($color: #fff) {
+@mixin scrollBar($bcolor: #fff, $scolor: #e1e4e7) {
   scrollbar-track-color: transparent;
 
   &::-webkit-scrollbar {
     width: 6px;
-    background: $color;
+    background: $bcolor;
   }
 
   &::-webkit-scrollbar-track {
@@ -75,7 +56,7 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 5px;
-    background: #e1e4e7;
+    background: $scolor;
   }
 
   &::-webkit-scrollbar-corner {
@@ -84,7 +65,7 @@
 
   &::-moz-scrollbar {
     width: 6px;
-    background: $color;
+    background: $bcolor;
   }
 
   &::-moz-scrollbar-track {
@@ -93,7 +74,7 @@
 
   &::-moz-scrollbar-thumb {
     border-radius: 5px;
-    background: #e1e4e7;
+    background: $scolor;
   }
 
   &::-moz-scrollbar-corner {
