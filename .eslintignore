@@ -4,5 +4,11 @@ node_modules/
 # release
 release/
 
+# lib
+lib
+
+# dist
+dist
+
 # typings
 typings.d.ts
