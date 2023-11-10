@@ -65,7 +65,7 @@
     "webpack-spritesmith": "^1.1.0"
   },
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "1.6.0",
     "es6-promise": "^4.2.8",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
